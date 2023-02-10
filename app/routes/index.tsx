@@ -15,7 +15,7 @@ export default function Index() {
   const { date, value } = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix at {date}</h1>
+      <h1 className="text-3xl">Welcome to Remix at {date}</h1>
       <p>value is {JSON.stringify(value)}</p>
     </div>
   );

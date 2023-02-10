@@ -2,11 +2,14 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
+    "build:css": "tailwindcss -m -i node_modules/tailwindcss/tailwind.css -o app/styles/app.css",
+    "build:remix": "remix build",
+    "build": "run-s build:*",
     "deploy": "wrangler publish",
     "dev:remix": "remix watch",
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
-    "dev": "remix build && run-p \"dev:*\"",
+    "dev:css": "tailwindcss -w -i node_modules/tailwindcss/tailwind.css -o app/styles/app.css",
+    "dev": "yarn build && run-p \"dev:*\"",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "typecheck": "tsc"
   },
@@ -27,6 +30,7 @@
     "eslint": "^8.27.0",
     "miniflare": "^2.11.0",
     "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.2.6",
     "typescript": "^4.8.4",
     "wrangler": "^2.2.1"
   },
