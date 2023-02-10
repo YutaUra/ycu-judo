@@ -1,32 +1,22 @@
+import type { LoaderArgs } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
+import { useLoaderData } from "@remix-run/react";
+
+export const loader = async ({ params, context }: LoaderArgs) => {
+  const res = await VIDEOS.get<{ title: string; url: string }>("hoge", "json");
+
+  return json({
+    date: new Date().toISOString(),
+    value: res,
+  });
+};
+
 export default function Index() {
+  const { date, value } = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+      <h1>Welcome to Remix at {date}</h1>
+      <p>value is {JSON.stringify(value)}</p>
     </div>
   );
 }

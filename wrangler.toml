@@ -5,8 +5,15 @@ main = "./build/index.js"
 # https://developers.cloudflare.com/workers/platform/compatibility-dates
 compatibility_date = "2022-04-05"
 
+kv_namespaces = [
+  { binding = "VIDEOS", id = "2c8193e8c5d248479fca143febfcab08", preview_id = "a9de8515bddf4af68206253180677a57" }
+]
+
 [site]
   bucket = "./public"
 
 [build]
   command = "npm run build"
+
+[miniflare]
+  kv_persist = true
