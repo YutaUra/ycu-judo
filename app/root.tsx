@@ -1,4 +1,5 @@
 import CSS from "./styles/app.css";
+import remixImageStyles from "remix-image/remix-image.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 import {
   Links,
@@ -16,7 +17,16 @@ export const meta: MetaFunction = () => ({
 });
 
 export function links() {
-  return [{ rel: "stylesheet", href: CSS }];
+  return [
+    { rel: "stylesheet", href: CSS },
+    { rel: "stylesheet", href: remixImageStyles },
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap&text=横浜市立大学柔道部",
+    },
+  ];
 }
 
 export default function App() {

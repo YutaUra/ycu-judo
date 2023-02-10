@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./app/**/*.tsx", "./node_modules/flowbite-react/**/*.js"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        hero: ["Yuji Syuku", "serif"],
+      },
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
