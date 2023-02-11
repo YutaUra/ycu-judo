@@ -1,19 +1,33 @@
 import { isNonNull } from "~/lib/isNonNull";
 
 export type Playlist = {
-  id: string;
   title: string;
   url: string;
+  date: string;
+};
+
+declare const _playlistKey: unique symbol;
+type PlaylistKey = string & { [_playlistKey]: never };
+
+const createPlaylistKey = (playlist: Playlist): PlaylistKey => {
+  return `playlist-${playlist.date}-${playlist.title}` as PlaylistKey;
+};
+
+export const isPlaylistKey = (key: string): key is PlaylistKey => {
+  return key.startsWith("playlist-");
 };
 
 export const getPlaylistKeys = async () => {
   const result = await PLAYLISTS.list();
-  return result.keys.map((key) => key.name);
+  return result.keys.map<PlaylistKey>((key) => key.name as PlaylistKey);
 };
 
-export const getPlaylist = async (id: string) => {
+export const getPlaylist = async (id: PlaylistKey) => {
   const result = await PLAYLISTS.get<Playlist>(id, "json");
-  return result;
+  if (!result) {
+    return null;
+  }
+  return { ...result, id };
 };
 
 export const getPlaylists = async () => {
@@ -22,8 +36,8 @@ export const getPlaylists = async () => {
   return playlists.filter(isNonNull);
 };
 
-export const createPlaylist = async (playlist: Omit<Playlist, "id">) => {
-  const id = "playlist-" + playlist.url;
+export const createPlaylist = async (playlist: Playlist) => {
+  const id = createPlaylistKey(playlist);
   await PLAYLISTS.put(id, JSON.stringify(playlist));
   return {
     id,
@@ -31,11 +45,14 @@ export const createPlaylist = async (playlist: Omit<Playlist, "id">) => {
   };
 };
 
-export const deletePlaylist = async (id: string) => {
+export const deletePlaylist = async (id: PlaylistKey) => {
   await PLAYLISTS.delete(id);
 };
 
-export const updatePlaylist = async (playlist: Playlist) => {
-  await PLAYLISTS.put(playlist.id, JSON.stringify(playlist));
-  return playlist;
+export const updatePlaylist = async (id: PlaylistKey, playlist: Playlist) => {
+  await PLAYLISTS.put(id, JSON.stringify(playlist));
+  return {
+    id,
+    ...playlist,
+  };
 };

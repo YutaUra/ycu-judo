@@ -9,6 +9,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import ToastCSS from "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -20,6 +22,7 @@ export function links() {
   return [
     { rel: "stylesheet", href: CSS },
     { rel: "stylesheet", href: remixImageStyles },
+    { rel: "stylesheet", href: ToastCSS },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
     {
@@ -38,6 +41,7 @@ export default function App() {
       </head>
       <body>
         <Outlet />
+        <ToastContainer />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

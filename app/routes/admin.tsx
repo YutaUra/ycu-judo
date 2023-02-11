@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+import { Link, Outlet } from "@remix-run/react";
 import type { LoaderArgs, LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
@@ -23,9 +23,17 @@ export default function AdminTemplate() {
 
   return (
     <div>
-      <h1>管理ページ</h1>
+      <div className="flex items-baseline">
+        <h1 className="p-4 text-2xl">横浜市立大学柔道部 管理ページ</h1>
 
-      <Outlet />
+        <Link to="/" className="ml-4">
+          通常のページ
+        </Link>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-4">
+        <Outlet />
+      </div>
     </div>
   );
 }
