@@ -1,1 +1,1 @@
-declare const VIDEOS: KVNamespace;
+declare const PLAYLISTS: KVNamespace;

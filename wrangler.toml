@@ -6,7 +6,7 @@ main = "./build/index.js"
 compatibility_date = "2022-04-05"
 
 kv_namespaces = [
-  { binding = "VIDEOS", id = "2c8193e8c5d248479fca143febfcab08", preview_id = "a9de8515bddf4af68206253180677a57" }
+  { binding = "PLAYLISTS", id = "90746471c82048a595ca4728b8a4fc0b", preview_id = "8c16d4369ecb43aaaf3e2f4e5b21038a" }
 ]
 
 [site]
