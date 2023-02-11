@@ -3,7 +3,7 @@ import { Header } from "~/modules/common/Header/Header";
 
 export default function AppTemplate() {
   return (
-    <div>
+    <div className="bg-gray-200">
       <Header />
       <div>
         <Outlet />
