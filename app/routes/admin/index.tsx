@@ -31,7 +31,10 @@ const PostPlaylistForm = zfd.formData({
     })
     .transform((v) => {
       const date = new Date(v);
-      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+        2,
+        "0"
+      )}-${String(date.getDate()).padStart(2, "0")}`;
     }),
   url: zfd.text(
     z
