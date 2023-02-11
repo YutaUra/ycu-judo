@@ -2,7 +2,6 @@ import type { DataFunctionArgs } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import {
   Form,
-  Link,
   useActionData,
   useLoaderData,
   useTransition,
@@ -32,7 +31,7 @@ const PostPlaylistForm = zfd.formData({
     })
     .transform((v) => {
       const date = new Date(v);
-      return date.toLocaleDateString().replaceAll("/", "-");
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     }),
   url: zfd.text(
     z
