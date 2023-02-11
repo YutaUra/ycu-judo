@@ -8,6 +8,12 @@ export default function AppTemplate() {
       <div>
         <Outlet />
       </div>
+
+      <div>
+        <p className="text-center text-gray-500 text-sm py-2">
+          © 2023 YutaUra All Rights Reserved.
+        </p>
+      </div>
     </div>
   );
 }

@@ -228,7 +228,7 @@ export default function AdminIndex() {
                 <div className="mr-3">
                   <Spinner size="sm" light={true} />
                 </div>
-                追加中...
+                Loading...
               </>
             ) : (
               "追加"
