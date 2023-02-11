@@ -1,6 +1,7 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
+import { Card } from "flowbite-react";
 import { Hero } from "~/modules/common/Hero/Hero";
 import { getPlaylists } from "~/modules/playlist/repository.server";
 
@@ -25,28 +26,11 @@ export default function Index() {
         <div className="mt-8">
           <h2 className="text-2xl font-bold">これまでの撮影データ</h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {playlists.map((playlist) => {
-              // const query = playlist.url.split("?")[1];
-              return (
-                <div key={playlist.id} className="p-4 bg-gray-100 rounded-md">
-                  {/* <div
-                    className="w-full aspect-[560/315]"
-                    dangerouslySetInnerHTML={{
-                      __html: `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?${query}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
-                    }}
-                  /> */}
-
-                  <a
-                    href={playlist.url}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="block mt-3 underline-offset-2 underline decoration-slate-700"
-                  >
-                    <h3 className="text-xl font-bold">{`${playlist.date} ${playlist.title}`}</h3>
-                  </a>
-                </div>
-              );
-            })}
+            {playlists.map((playlist) => (
+              <Card key={playlist.id} href={playlist.url}>
+                <h3 className="text-xl font-bold underline-offset-2 underline decoration-slate-700">{`${playlist.date} ${playlist.title}`}</h3>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
