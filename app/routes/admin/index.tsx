@@ -73,7 +73,16 @@ export const action = async ({ request }: DataFunctionArgs) => {
 
       try {
         await createPlaylist(result.data);
-        return json(createActionResponse({ success: true }));
+        return json(
+          createActionResponse({
+            success: true,
+            toast: {
+              message:
+                "登録に成功しました。反映まで最大1分ほどかかる場合があります。",
+              level: "success",
+            },
+          })
+        );
       } catch {
         return json(
           createActionResponse({
