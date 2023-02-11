@@ -19,7 +19,10 @@ export const isPlaylistKey = (key: string): key is PlaylistKey => {
 
 export const getPlaylistKeys = async () => {
   const result = await PLAYLISTS.list();
-  return result.keys.map<PlaylistKey>((key) => key.name as PlaylistKey);
+  const keys = result.keys.map<PlaylistKey>((key) => key.name as PlaylistKey);
+
+  keys.reverse();
+  return keys;
 };
 
 export const getPlaylist = async (id: PlaylistKey) => {
