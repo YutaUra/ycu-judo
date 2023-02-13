@@ -14,8 +14,9 @@ import { ToastContainer } from "react-toastify";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "横浜市立大学柔道部",
   viewport: "width=device-width,initial-scale=1",
+  robots: "noindex",
 });
 
 export function links() {

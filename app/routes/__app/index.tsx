@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/cloudflare";
+import type { LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { Card } from "flowbite-react";
@@ -11,6 +11,12 @@ export const loader = async ({ params, context }: LoaderArgs) => {
   return json({
     playlists,
   });
+};
+
+export const meta: MetaFunction = () => {
+  return {
+    description: "横浜市立大学柔道部の大会等の撮影データを公開しています。",
+  };
 };
 
 export default function Index() {
