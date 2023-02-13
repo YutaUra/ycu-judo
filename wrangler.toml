@@ -19,10 +19,10 @@ kv_namespaces = [
   kv_persist = true
 
 [wasm_modules]
-  JPEG_ENC_WASM = "node_modules/remix-image-wasm/jpeg_enc.wasm"
-  # JPEG_DEC_WASM = "node_modules/remix-image-wasm/jpeg_dec.wasm"
+  # JPEG_ENC_WASM = "node_modules/remix-image-wasm/jpeg_enc.wasm"
+  JPEG_DEC_WASM = "node_modules/remix-image-wasm/jpeg_dec.wasm"
   PNG_WASM = "node_modules/remix-image-wasm/png.wasm"
-  # WEBP_ENC_WASM = "node_modules/remix-image-wasm/webp_enc.wasm"
-  WEBP_DEC_WASM = "node_modules/remix-image-wasm/webp_dec.wasm"
+  WEBP_ENC_WASM = "node_modules/remix-image-wasm/webp_enc.wasm"
+  # WEBP_DEC_WASM = "node_modules/remix-image-wasm/webp_dec.wasm"
   # AVIF_ENC_WASM = "node_modules/remix-image-wasm/avif_enc.wasm"    # uncomment for AVIF support
   # AVIF_DEC_WASM = "node_modules/remix-image-wasm/avif_dec.wasm"    # uncomment for AVIF support
