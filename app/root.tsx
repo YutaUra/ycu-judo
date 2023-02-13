@@ -1,4 +1,5 @@
 import CSS from "./styles/app.css";
+import FontCSS from "./styles/font.css";
 import remixImageStyles from "remix-image/remix-image.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 import {
@@ -24,12 +25,13 @@ export function links() {
     { rel: "stylesheet", href: CSS },
     { rel: "stylesheet", href: remixImageStyles },
     { rel: "stylesheet", href: ToastCSS },
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap&text=横浜市立大学柔道部",
-    },
+    { rel: "stylesheet", href: FontCSS },
+    // { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    // { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
+    // {
+    //   rel: "stylesheet",
+    //   href: "https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap&text=横浜市立大学柔道部",
+    // },
   ];
 }
 
