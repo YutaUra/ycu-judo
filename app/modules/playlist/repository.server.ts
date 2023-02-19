@@ -17,12 +17,21 @@ export const isPlaylistKey = (key: string): key is PlaylistKey => {
   return key.startsWith("playlist-");
 };
 
-export const getPlaylistKeys = async () => {
-  const result = await PLAYLISTS.list();
+export const getPlaylistKeys = async (prefix: string = "") => {
+  const result = await PLAYLISTS.list({
+    prefix: `playlist-${prefix}`,
+  });
   const keys = result.keys.map<PlaylistKey>((key) => key.name as PlaylistKey);
 
   keys.reverse();
   return keys;
+};
+
+const convertPlaylist = (playlist: Playlist) => {
+  return {
+    ...playlist,
+    year: parseInt(playlist.date.split("-")[0], 10),
+  };
 };
 
 export const getPlaylist = async (id: PlaylistKey) => {
@@ -30,11 +39,17 @@ export const getPlaylist = async (id: PlaylistKey) => {
   if (!result) {
     return null;
   }
-  return { ...result, id };
+  return { ...convertPlaylist(result), id };
 };
 
 export const getPlaylists = async () => {
   const keys = await getPlaylistKeys();
+  const playlists = await Promise.all(keys.map(getPlaylist));
+  return playlists.filter(isNonNull);
+};
+
+export const getPlaylistsByYear = async (year: number) => {
+  const keys = await getPlaylistKeys(`${year}-`);
   const playlists = await Promise.all(keys.map(getPlaylist));
   return playlists.filter(isNonNull);
 };

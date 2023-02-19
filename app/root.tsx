@@ -12,6 +12,7 @@ import {
 } from "@remix-run/react";
 import ToastCSS from "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { Header } from "./modules/common/Header/Header";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -48,6 +49,37 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>エラーが発生</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <div className="bg-gray-200">
+          <Header />
+          <div className="max-w-4xl mx-auto p-4">
+            <h1>エラーが発生しました。</h1>
+
+            <Outlet />
+          </div>
+
+          <div>
+            <p className="text-center text-gray-500 text-sm py-2">
+              © 2023 YutaUra All Rights Reserved.
+            </p>
+          </div>
+        </div>
+
+        <Scripts />
       </body>
     </html>
   );
